@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="D:\Owncloud\Docencia\PDM\2016-2017\Codigo\DetectSensors\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\Owncloud\Docencia\PDM\2016-2017\Codigo\DetectSensors\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_c71772e74306d058daf94ff25140dd75401083a9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Owncloud\Docencia\PDM\2016-2017\Codigo\DetectSensors\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b5cae019653ec1855313b44d4acb32cf1dc6caca">
+        <dex dex="D:\Owncloud\Docencia\PDM\2016-2017\Codigo\DetectSensors\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_9e8a8c2d0cc68038b0ff0898d84ae54bcf742f86\classes.dex" />
+    </item>
+
+</items>
