@@ -1,0 +1,5 @@
+<resources>
+<string name="app_name">DetectSensors</string>
+<string name="hello">SensorTest</string>
+<string name="title">Los sensores que posee este dispositivo android se listan a continuación. Pulse en un sensor de la lista para consultar su tipo y nombre.</string>
+</resources>
