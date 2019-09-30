@@ -1,5 +1,12 @@
 <resources>
 <string name="app_name">DetectSensors</string>
 <string name="hello">SensorTest</string>
-<string name="title">Los sensores que posee este dispositivo android se listan a continuación. Pulse en un sensor de la lista para consultar su tipo y nombre.</string>
+    <string name="Name">Name:&#160;</string>
+    <string name="Vendor">Vendor:&#160;</string>
+    <string name="Version">Version:&#160;</string>
+    <string name="Type">Type:&#160;</string>
+    <string name="MaxRange">Max. Range:&#160;</string>
+    <string name="Resolution">Resolution:&#160;</string>
+    <string name="Power">Power:&#160;</string>
+    <string name="MinDelay">Min. Delay:&#160;</string>
 </resources>

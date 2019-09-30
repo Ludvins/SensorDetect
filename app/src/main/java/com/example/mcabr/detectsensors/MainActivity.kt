@@ -1,32 +1,48 @@
 package com.example.mcabr.detectsensors
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.Toast
-
-import java.util.ArrayList
+import android.widget.*
 
 class MainActivity : Activity() {
 
     private lateinit var listViewSensor: ListView
-    private val foundSensor = ArrayList<Sensor>()
-    private var aaSensor: ArrayAdapter<Sensor>? = null
+    private val sensorList = mutableListOf<Sensor>()
+    private var aaSensor: SensorAdapter? = null
 
     private var sensorManager: SensorManager? = null
 
     private var myListSensorClickListener: AdapterView.OnItemClickListener = AdapterView.OnItemClickListener { _, _, index, _ ->
         val mySensor = aaSensor!!.getItem(index)
 
-        val infoSensor = mySensor.stringType + " - " + mySensor.name + " - " + mySensor.type
+        val dialogBuilder = AlertDialog.Builder(this)
+        val dialogView = View.inflate(this, R.layout.sensor_layout,null)
+        dialogBuilder.setView(dialogView)
 
-        Toast.makeText(applicationContext, infoSensor, Toast.LENGTH_LONG).show()
+        val name = dialogView.findViewById<TextView>(R.id.name)
+        val vendor = dialogView.findViewById<TextView>(R.id.vendor)
+        val version = dialogView.findViewById<TextView>(R.id.version)
+        val type = dialogView.findViewById<TextView>(R.id.type)
+        val maxRange = dialogView.findViewById<TextView>(R.id.maxRange)
+        val resolution = dialogView.findViewById<TextView>(R.id.resolution)
+        val power = dialogView.findViewById<TextView>(R.id.power)
+        val minDelay = dialogView.findViewById<TextView>(R.id.minDelay)
+
+        name.text = mySensor.name
+        vendor.text = mySensor.vendor
+        version.text = mySensor.version.toString()
+        type.text = mySensor.stringType
+        maxRange.text = mySensor.maximumRange.toString()
+        resolution.text = mySensor.resolution.toString()
+        power.text = mySensor.power.toString()
+        minDelay.text = mySensor.minDelay.toString()
+
+        dialogBuilder.create().show()
     }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +56,8 @@ class MainActivity : Activity() {
     private fun initUI() {
         listViewSensor = findViewById<View>(R.id.listViewSensor) as ListView
 
-        aaSensor = ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, foundSensor)
+        aaSensor = SensorAdapter(this,
+                 sensorList)
 
         listViewSensor.adapter = aaSensor
         listViewSensor.onItemClickListener = myListSensorClickListener
@@ -51,30 +67,13 @@ class MainActivity : Activity() {
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
-    private fun getTypeSensor(type: Int): String {
-
-        return when (type) {
-            Sensor.TYPE_ACCELEROMETER -> "ACCELEROMETER"
-            Sensor.TYPE_GRAVITY -> "GRAVITY"
-            Sensor.TYPE_GYROSCOPE -> "GYROSCOPE"
-            Sensor.TYPE_LIGHT -> "LIGHT"
-            Sensor.TYPE_LINEAR_ACCELERATION -> "LINEAR_ACCELERATION"
-            Sensor.TYPE_MAGNETIC_FIELD -> "MAGNETIC_FIELD"
-            Sensor.TYPE_PRESSURE -> "PRESSURE"
-            Sensor.TYPE_PROXIMITY -> "PROXIMITY"
-            Sensor.TYPE_ROTATION_VECTOR -> "ROTATION_VECTOR"
-            Sensor.TYPE_AMBIENT_TEMPERATURE -> "TEMPERATURE"
-            else -> "OTHER"
-        }
-    }
-
     private fun getSensorList() {
 
         val sensors = sensorManager!!.getSensorList(Sensor.TYPE_ALL)
 
         for (sensor in sensors) {
-            if (!foundSensor.contains(sensor))
-                foundSensor.add(sensor)
+            if (!sensorList.contains(sensor))
+                sensorList.add(sensor)
         }
         aaSensor!!.notifyDataSetChanged()
     }
